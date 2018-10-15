@@ -1,0 +1,7 @@
+<ul id='treeUL'></ul>
+<script>
+  $(document).ready(function(){
+    let tree = (<%= @jscript_tree %>);
+    makeTree(tree);
+  });
+</script>

@@ -1,0 +1,17 @@
+<h1><%= @location.name %></h1>
+<div class="tree_nav">
+  <%= render(partial: 'tree') %>
+</div>
+<div class="data">
+  <ul>
+  <% @location.notes.each do |note| %>
+    <% unless note.visible %>
+      <% if note.location.user.id == @current_user.id %>
+        <li><em><%= note.data %></em></li>
+      <% end %>
+    <% else %>
+      <li><%= note.data %></li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>

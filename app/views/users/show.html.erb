@@ -1,0 +1,14 @@
+<h1>Welcome <%= @current_user.name %></h1>
+
+<h3>Game Worlds:</h3>
+<ul>
+<% @current_user.locations.each do |location| %>
+  <% if location.environment == nil %>
+    <li>
+      <a href="<%= location_path(location) %>">
+        <%= location.name %>
+      </a>
+    </li>
+  <% end %>
+<% end %>
+</ul>

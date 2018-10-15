@@ -14,3 +14,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+
+$(document).ready(function(){
+  console.log("hoy");
+})

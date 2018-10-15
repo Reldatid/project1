@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  variety: MyText
+  visible: false
+
+two:
+  name: MyText
+  variety: MyText
+  visible: false
