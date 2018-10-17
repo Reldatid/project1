@@ -1,0 +1,12 @@
+<%= form_for @location, :url => "/locations/new_universe" do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br />
+  <%= f.label :type %>
+  <%= f.text_field :variety %>
+  <br />
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.hidden_field :visible, :value => 1%>
+  <%= f.submit %>
+<% end %>

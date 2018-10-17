@@ -35,21 +35,94 @@ header{
   height: 25px;
 }
 
-nav{
+header nav{
   display: inline;
   float: right;
 }
 
 main{
-  margin-top: 25px;
+  display: inline-block;
+  padding-top: 25px;
+  height: 100vh;
+  width: 100vw;
 }
 
-.tree_nav{
-  display: inline-block;
-  width: auto;
+.grid-container{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1fr;
+}
+
+.tree-nav{
+  padding: 5px;
+  grid-column: 1;
+  grid-row: 1;
   border: 1px solid black;
 }
 
-.data{
+.data-grid{
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  grid-template-columns: 4fr 2fr 4fr 2fr;
+  grid-template-rows: 1fr 1fr;
+}
+.data-grid div{
+  /* border: 1px solid black; */
+  padding-left: 10px;
+}
 
+.general-info{
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+}
+.description{
+  white-space: pre-wrap;
+}
+.edit-link{
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
+  padding: 3px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.npcs{
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.npcs h4{
+  text-decoration: underline;
+  margin-top: 35px;
+}
+
+.public-notes{
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.dm-notes{
+  grid-column: 3 / span 2;
+  grid-row: 2;
+}
+
+.images{
+  grid-column: 3 / span 2;
+  grid-row: 1;
+}
+
+h1.user{
+
+}
+
+.model-list .title{
+  font-size: 1em;
 }

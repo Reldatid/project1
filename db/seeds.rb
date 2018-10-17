@@ -17,14 +17,13 @@ puts "Created #{User.all.length} Users."
 Location.destroy_all
 puts "Making Locations..."
 
-l1 = Location.create name: 'Testopia', variety: 'country'
-l2 = Location.create name: 'Test-ville', variety: 'village'
-l3 = Location.create name: 'The rubber duck', variety: 'pub'
-l4 = Location.create name: 'Test-city', variety: 'city'
-l5 = Location.create name: 'The test and tester', variety: 'tavern'
-l6 = Location.create name: 'Testoleum', variety: 'graveyard'
-l7 = Location.create name: 'Testopolis',
-variety: 'city'
+l1 = Location.create name: 'Testopia', variety: 'country', universe: 'Testopia', branch: 'Testopia'
+l2 = Location.create name: 'Test-ville', variety: 'village', universe: 'Testopia', branch: 'Testopia,Test-ville'
+l3 = Location.create name: 'The rubber duck', variety: 'pub', universe: 'Testopia', branch:  'Testopia,Test-ville,The rubber duck'
+l4 = Location.create name: 'Test-city', variety: 'city', universe: 'Testopia', branch: 'Testopia,Test-city'
+l5 = Location.create name: 'The test and tester', variety: 'tavern', universe: 'Testopia', branch: 'Testopia,Test-city,The test and tester'
+l6 = Location.create name: 'Testoleum', variety: 'graveyard', universe: 'Testopia', branch: 'Testopia,Test-city,Testoleum'
+l7 = Location.create name: 'Testopolis', variety: 'city', universe: 'Testopia', branch: 'Testopia-Testopolis'
 
 puts l1.id
 puts "Created #{Location.all.length} Locations."

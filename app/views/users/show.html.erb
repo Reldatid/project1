@@ -1,14 +1,17 @@
-<h1>Welcome <%= @current_user.name %></h1>
-
-<h3>Game Worlds:</h3>
-<ul>
-<% @current_user.locations.each do |location| %>
-  <% if location.environment == nil %>
-    <li>
-      <a href="<%= location_path(location) %>">
-        <%= location.name %>
-      </a>
-    </li>
+<h1 class="user">Hello <%= @current_user.name %></h1>
+<div class="model-list">
+  <div class="title">
+    Game Worlds: <%= link_to "Create a New Universe/World/Realm", new_location_path(:relation => 'root') %>
+  </div>
+  <ul>
+  <% @current_user.locations.each do |location| %>
+    <% if location.environment == nil %>
+      <li>
+        <a href="<%= location_path(location) %>">
+          <%= location.name %>
+        </a>
+      </li>
+    <% end %>
   <% end %>
-<% end %>
-</ul>
+  </ul>
+</div>

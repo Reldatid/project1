@@ -1,17 +1,36 @@
-<h1><%= @location.name %></h1>
-<div class="tree_nav">
-  <%= render(partial: 'tree') %>
-</div>
-<div class="data">
-  <ul>
-  <% @location.notes.each do |note| %>
-    <% unless note.visible %>
-      <% if note.location.user.id == @current_user.id %>
-        <li><em><%= note.data %></em></li>
+<div class="grid-container">
+  <div class="tree-nav">
+    <strong>Tree Nav</strong>
+    <%= render(partial: 'tree') %>
+  </div>
+  <div class="data-grid">
+    <div class="general-info">
+      <h1><%= @location.name %></h1>
+      <nav>
+      <%= link_to 'Add location', new_location_path(:universe => @location.universe, :branch => @location.branch) %> ||
+      <%= link_to 'Delete this location', location_path(@location), method: 'delete' %></nav>
+      <p class="description"><%= @location.description %></p>
+      <%= link_to "Edit page", edit_location_path(@location), :class => "edit-link" %>
+    </div>
+    <div class='npcs'>
+      <h4>NPCs:</h4>
+    </div>
+    <div class="public-notes">
+      <ul>
+      <% @location.notes.each do |note| %>
+        <% unless note.visible %>
+          <% if note.location.user.id == @current_user.id %>
+            <li><em><%= note.data %></em></li>
+          <% end %>
+        <% else %>
+          <li><%= note.data %></li>
+        <% end %>
       <% end %>
-    <% else %>
-      <li><%= note.data %></li>
+      </ul>
+    </div>
+    <% if @current_user.id == @location.user_id %>
+      <div class='dm-notes'></div>
     <% end %>
-  <% end %>
-  </ul>
+    <div class='images'></div>
+  </div>
 </div>

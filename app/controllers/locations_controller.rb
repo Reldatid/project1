@@ -3,9 +3,35 @@ class LocationsController < ApplicationController
   before_action :check_if_logged_in
 
   def create
+    @location = Location.new( location_params )
+    @location.user_id = Location.find_by(:name => params[:location][:universe]).user_id
+    @location.branch = params[:location][:branch]+','+@location.name
+    @location.save
+    redirect_to location_path(@location)
+  end
+
+  def create_universe
+    @location = Location.new( location_params )
+    @location.universe = @location.name
+    @location.branch = @location.name
+    @location.save
+    @current_user.locations << @location
+    redirect_to user_path(@current_user)
+  end
+
+  def new_universe
+    @location = Location.new
   end
 
   def new
+    @location = Location.new
+    if params[:universe] == nil
+      redirect_to "/locations/new_universe"
+    else
+      @universe = params[:universe]
+      @branch = params[:branch]
+      puts "="*100
+    end
   end
 
   def show
@@ -22,26 +48,42 @@ class LocationsController < ApplicationController
   def destroy
     location = Location.find params[:id]
     parent = location.environment
+    destroy_with_children(location)
+    if (parent.nil?)
+      redirect_to user_path(@current_user)
+    else
+      redirect_to location_path(parent)
+    end
+  end
+
+  private
+
+  def destroy_with_children(location)
+    if location.landmarks.any?
+      location.landmarks.each do |landmark|
+        destroy_with_children(landmark)
+      end
+    end
     location.destroy
-    redirect_to location_path(parent)
   end
 
-  def test
-    params[:id] = 35
-    grab_tree
-    render json: @jscript_tree
+  def location_params
+    params.require(:location).permit(:name, :variety, :description, :environment_id, :visible, :universe)
   end
 
+  def grab_root_location(id)
+    @location = Location.find id
+    @branch = [];
+    @treetop = @location
+    while @treetop.environment != nil do
+      @branch << @treetop
+      @treetop = @treetop.environment
+    end
+  end
 
   def grab_tree
-    @location = Location.find params[:id]
-    @branch = [];
-    treetop = @location
-    while treetop.environment != nil do
-      @branch << treetop
-      treetop = treetop.environment
-    end
-    @universe = treetop
+    grab_root_location(params[:id])
+    @universe = @treetop
     if @universe.landmarks.present?
       tree_hash = @universe.generate_tree(@universe)
     end

@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= cloudinary_js_config %>
   </head>
 
   <body>
@@ -14,7 +15,7 @@
       <span>Universe Tracker</span>
       <nav>
         <% if @current_user.present? %>
-          Welcome, <%= @current_user.name %> ||
+          <%= link_to @current_user.name, user_path(@current_user) %> ||
           <%= link_to 'Logout', login_path, method: 'delete' %>
         <% else %>
           <%= link_to 'Login', login_path %> ||

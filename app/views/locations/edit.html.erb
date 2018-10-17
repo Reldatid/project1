@@ -1,2 +1,21 @@
-<h1>Locations#edit</h1>
-<p>Find me in app/views/locations/edit.html.erb</p>
+<%= form_for @location do |f| %>
+  <div class="data-grid">
+    <div class="general-info">
+      <h1><%= @location.name %></h1>
+      <nav>
+        Add location ||
+        Delete this location
+      </nav>
+    </div>
+    <div class='npcs'>
+      <h4>NPCs:</h4>
+    </div>
+    <div class="public-notes">
+
+    </div>
+    <% if @current_user.id == @location.user_id %>
+      <div class='dm-notes'></div>
+    <% end %>
+    <div class='images'></div>
+  </div>
+<% end %>
