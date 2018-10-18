@@ -7,17 +7,30 @@
     <div class="general-header">
       <h1><%= @location.name %></h1>
       <nav>
-        <%= link_to 'Add location', new_location_path(:universe => @location.universe, :branch => @location.branch), :class => "add" %>
-        <%= link_to 'Delete', location_path(@location), method: 'delete', :class => "delete-link" %>
-        <%= link_to "Edit page", edit_location_path(@location), :class => "edit-link" %>
+        <%= link_to 'Add location', new_location_path(:universe => @location.universe, :branch => @location.branch), :class => "button add" %>
+        <%= link_to 'Delete', location_path(@location), method: 'delete', :class => "button delete-link" %>
+        <%= link_to "Edit page", edit_location_path(@location), :class => "button edit-link" %>
       </nav>
     </div>
     <div class="general-info">
       <p class="text-block description"><%= @location.description %></p>
     </div>
 
-    <div class='npcs'>
-      <h4>NPCs:</h4>  <%= link_to "Add", new_user_path(:location => @location), :class => "npc-link" %>
+    <div class='npc-list'>
+      <h4>NPCs:</h4><%= link_to "Add", new_npc_path(:location => @location), :class => "button npc-link" %>
+      <ul>
+        <% @location.npcs.each do |npc| %>
+          <li><%= link_to npc.name, location_path(@location, :npc => npc) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class='npc-display'>
+      <% unless @npc.nil? %>
+        <strong><%= @npc.name %>: <%= @npc.title %></strong>
+          <%= link_to "Edit", edit_npc_path(@npc), :class => " npc-edit-link" %><br>
+        <%= @npc.description %>
+      <% end %>
     </div>
 
     <div class="public-header">
@@ -35,7 +48,5 @@
       <p class="text-block"><%= @location.dm_notes %></p>
     </div>
     <% end %>
-
-    <div class='images'></div>
   </div>
 </div>

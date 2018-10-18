@@ -9,7 +9,7 @@
   <%= f.text_area :description %>
   <br />
   <%= f.label 'where is it?' %>
-  <%= f.collection_select :environment_id, Location.where(:universe => @universe), :id, :name%>
+  <%= f.collection_select :environment_id, Location.where(:universe => @universe), :id, :name, {:selected => @location.environment}%>
   <br />
   <%= f.label :visible %>
   <%= f.check_box :visible %>

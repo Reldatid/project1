@@ -101,9 +101,9 @@ div{
   grid-row: 1;
 }
 .data-grid div{
+  position: relative;
   border: 1px solid black;
-  padding-top: 5px;
-  padding-left: 10px;
+  padding: 5px 5px 0 10px;
 }
 .data-grid textarea{
   width: 100%;
@@ -123,7 +123,8 @@ h3{
 .general-header h1{
   margin: 0px;
 }
-.data-grid a{
+
+a.button{
   -webkit-appearance: button;
   -moz-appearance: button;
   appearance: button;
@@ -143,6 +144,16 @@ h3{
 .delete-link{
   right: 0px;
   bottom: 0px;
+}
+.npc-edit-link{
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+  padding: 3px;
+  /* top: 0px;
+  right: 0px; */
 }
 
 .save-changes{
@@ -164,12 +175,12 @@ h3{
   white-space: pre-wrap;
 }
 
-.npcs{
+.npc-list{
   grid-column: 2;
   grid-row: 2;
   position: relative;
 }
-.npcs h4{
+.npc-list h4{
   text-decoration: underline;
   margin-top: 10px;
 }
@@ -178,9 +189,10 @@ h3{
   right: 0px;
 }
 
-.images{
+.npc-display{
   grid-column: 3 / span 2;
   grid-row: 2;
+  z-index: 100;
 }
 
 .public-header{

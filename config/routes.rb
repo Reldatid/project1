@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root to: "session#new"
 
+  resources :npcs, except: [:show]
   resources :users, except: [:index]
 
   get "/locations/new_universe" => "locations#new_universe";

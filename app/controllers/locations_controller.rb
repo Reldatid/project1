@@ -2,6 +2,21 @@ class LocationsController < ApplicationController
 
   before_action :check_if_logged_in
 
+  def new
+    @location = Location.new
+    if params[:universe] == nil
+      redirect_to "/locations/new_universe"
+    else
+      @universe = params[:universe]
+      @branch = params[:branch]
+      puts "="*100
+    end
+  end
+
+  def new_universe
+    @location = Location.new
+  end
+
   def create
     @location = Location.new( location_params )
     @location.user_id = Location.find_by(:name => params[:location][:universe]).user_id
@@ -19,23 +34,11 @@ class LocationsController < ApplicationController
     redirect_to user_path(@current_user)
   end
 
-  def new_universe
-    @location = Location.new
-  end
-
-  def new
-    @location = Location.new
-    if params[:universe] == nil
-      redirect_to "/locations/new_universe"
-    else
-      @universe = params[:universe]
-      @branch = params[:branch]
-      puts "="*100
-    end
-  end
-
   def show
     grab_tree
+    unless params[:npc].nil?
+      @npc = Npc.find params[:npc]
+    end
   end
 
   def edit

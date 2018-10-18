@@ -36,11 +36,22 @@ l2.landmarks << l3
 l4.landmarks << l5 << l6
 
 Note.destroy_all
-puts "Creating Notes..."
+# puts "Creating Notes..."
+#
+# n1 = Note.create data:"A beautiful world of trial and error.", visible:true
+# n2 = Note.create data:"Mostly error. Its horrible. Progress pleases the duck.", visible:false
+#
+# puts  "Created #{Note.all.length} notes"
+#
+# l1.notes << n1 << n2
 
-n1 = Note.create data:"A beautiful world of trial and error.", visible:true
-n2 = Note.create data:"Mostly error. Its horrible. Progress pleases the duck.", visible:false
+Npc.destroy_all
+puts "Creating NPCs..."
 
-puts  "Created #{Note.all.length} notes"
+n1 = Npc.create name: 'testy', title: 'the barkeep', description: "A friendly barkeeper in 'The Test And Tester'. Helps coders find ballmer's peak, the rumoured ultimate coding location."
 
-l1.notes << n1 << n2
+puts "Made #{Npc.all.length} NPCs."
+puts "Placing NPCs..."
+
+u1.npcs << n1
+l5.npcs << n1
