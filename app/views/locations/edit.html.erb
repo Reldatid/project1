@@ -20,7 +20,16 @@
       <%= f.text_area :description %>
     </div>
 
-    <div class='npc-list'>
+    <div class="locations list">
+      <h4>Landmarks:</h4>
+      <ul>
+        <% @location.landmarks.each do |landmark| %>
+          <li><%=landmark.name%></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class='npc list'>
       <h4>NPCs:</h4>
       <ul>
         <% @location.npcs.each do |npc| %>
