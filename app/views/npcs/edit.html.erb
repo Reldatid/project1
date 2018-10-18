@@ -1,5 +1,8 @@
-<h2> Edit an <%= @npc.name %> </h2>
-
-<%= form_for @npc do |f| %>
-<%= render(partial: 'form') %>
-<% end %>
+<div class="form-grid">
+  <div class="fields">
+    <h2> Edit <%= @npc.name %> </h2>
+    <%= form_for @npc do |f| %>
+    <%= render(partial: 'form') %>
+    <% end %>
+  </div>
+</div>
