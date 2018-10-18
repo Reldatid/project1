@@ -7,7 +7,6 @@
     <div class="general-header">
       <h1><%= @location.name %></h1>
       <nav>
-        <%= link_to 'Add location', new_location_path(:location => @location), :class => "button add" %>
         <%= link_to 'Delete', location_path(@location), method: 'delete', :class => "button delete-link" %>
         <%= link_to "Edit page", edit_location_path(@location), :class => "button edit-link" %>
       </nav>
@@ -16,8 +15,17 @@
       <p class="text-block description"><%= @location.description %></p>
     </div>
 
-    <div class='npc-list'>
-      <h4>NPCs:</h4><%= link_to "Add", new_npc_path(:location => @location), :class => "button npc-link" %>
+    <div class="locations list">
+      <h4>Landmarks:</h4><%= link_to 'New', new_location_path(:location => @location), :class => "button" %>
+      <ul>
+        <% @location.landmarks.each do |landmark| %>
+          <li><%= link_to landmark.name, location_path(@location) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class='npc list'>
+      <h4>NPCs:</h4><%= link_to "New", new_npc_path(:location => @location), :class => "button" %>
       <ul>
         <% @location.npcs.each do |npc| %>
           <li><%= link_to npc.name, location_path(@location, :npc => npc) %></li>
