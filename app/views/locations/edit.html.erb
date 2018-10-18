@@ -1,10 +1,13 @@
+<%= form_for @location do |f| %>
 <div class="grid-container">
   <div class="tree-nav">
-    <strong>Tree Nav</strong>
-    <%= render(partial: 'tree') %>
+    <strong>Tree Nav</strong><br>
+    <%= f.collection_select :environment_id, Location.where(:universe => @location.universe), :id, :name, {:selected => @location.environment_id}%> <br>
+    <% unless flash[:error].nil? %>
+      <%= flash[:error] %>
+    <% end %>
   </div>
 
-  <%= form_for @location do |f| %>
   <div class="data-grid display">
 
     <div class="general-header">
@@ -17,6 +20,13 @@
 
     <div class='npcs'>
       <h4>NPCs:</h4>
+      <ul>
+        <% @location.npcs.each do |npc| %>
+          <li><%= npc.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class='npc-display'>
     </div>
 
     <div class="public-header">
@@ -32,8 +42,6 @@
     <div class='dm-notes'><%= f.text_area :dm_notes, :class => "notes-field"%>
     </div>
     <% end %>
-
-    <div class='images'></div>
   </div>
   <% end %>
 </div>

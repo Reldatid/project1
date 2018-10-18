@@ -25,10 +25,9 @@ l5 = Location.create name: 'The test and tester', variety: 'tavern', universe: '
 l6 = Location.create name: 'Testoleum', variety: 'graveyard', universe: 'Testopia', branch: 'Testopia,Test-city,Testoleum'
 l7 = Location.create name: 'Testopolis', variety: 'city', universe: 'Testopia', branch: 'Testopia-Testopolis'
 
-puts l1.id
 puts "Created #{Location.all.length} Locations."
 
-u1.locations << l1 << l2 << l3 << l4 << l5 << l6
+u1.locations << l1 << l2 << l3 << l4 << l5 << l6 << l7
 
 puts "Linking Locations..."
 l1.landmarks << l2 << l4 << l7

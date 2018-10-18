@@ -1,12 +1,36 @@
-<%= form_for @location, :url => "/locations/new_universe" do |f|%>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br />
-  <%= f.label :type %>
-  <%= f.text_field :variety %>
-  <br />
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.hidden_field :visible, :value => 1%>
-  <%= f.submit %>
-<% end %>
+<div class="grid-container">
+  <div class="tree-nav">
+    <strong>Tree Nav</strong>
+  </div>
+
+  <%= form_for @location, :url => "/locations/new_universe" do |f|%>
+  <div class="data-grid display">
+
+    <div class="general-header">
+      <h1>Name: <%= f.text_field :name %></h1>
+      <%= f.submit "Save", :class => "save-changes" %>
+    </div>
+    <div class="general-info">
+      <%= f.text_area :description, value: 'Description:'%>
+    </div>
+
+    <div class='npcs'>
+      <h4>NPCs:</h4>
+    </div>
+    <div class='npc-display'>
+    </div>
+
+    <div class="public-header">
+      <h3>Notes:</h3>
+    </div>
+    <div class="public-notes"><%= f.text_area :public_notes, :class => "notes-field", value: 'Notes Everyone Will See...'%>
+    </div>
+
+    <div class="dm-header">
+      <h3>Seekrit Notes:</h3>
+    </div>
+    <div class='dm-notes'><%= f.text_area :dm_notes, :class => "notes-field", value: 'Notes Only The DM Will See...'%>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -4,12 +4,10 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
-    if params[:universe] == nil
+    if params[:location] == nil
       redirect_to "/locations/new_universe"
     else
-      @universe = params[:universe]
-      @branch = params[:branch]
-      puts "="*100
+      @environment = params[:location]
     end
   end
 
@@ -19,8 +17,9 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new( location_params )
-    @location.user_id = Location.find_by(:name => params[:location][:universe]).user_id
-    @location.branch = params[:location][:branch]+','+@location.name
+    @location.user_id = @location.environment.user_id
+    @location.universe = @location.environment.universe
+    @location.branch = @location.environment.branch+','+@location.name
     @location.save
     redirect_to location_path(@location)
   end
@@ -49,6 +48,15 @@ class LocationsController < ApplicationController
     @location = Location.find params[:id]
     dm_notes = @location.dm_notes
     @location.update location_params
+
+    environment = Location.find(@location.environment_id)
+    branch_arr = environment.branch.split(',')
+    branch_arr.each do |place|
+      if place == @location.name
+        flash[:error] = "Don't choose a child landmark as a parent location!"
+        redirect_to edit_location_path(@location) and return
+      end
+    end
     if @current_user.id != @location.user_id
       @location.dm_notes = dm_notes
     end

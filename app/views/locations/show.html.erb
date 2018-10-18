@@ -7,7 +7,7 @@
     <div class="general-header">
       <h1><%= @location.name %></h1>
       <nav>
-        <%= link_to 'Add location', new_location_path(:universe => @location.universe, :branch => @location.branch), :class => "button add" %>
+        <%= link_to 'Add location', new_location_path(:location => @location), :class => "button add" %>
         <%= link_to 'Delete', location_path(@location), method: 'delete', :class => "button delete-link" %>
         <%= link_to "Edit page", edit_location_path(@location), :class => "button edit-link" %>
       </nav>
