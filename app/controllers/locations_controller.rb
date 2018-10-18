@@ -43,6 +43,14 @@ class LocationsController < ApplicationController
   end
 
   def update
+    @location = Location.find params[:id]
+    dm_notes = @location.dm_notes
+    @location.update location_params
+    if @current_user.id != @location.user_id
+      @location.dm_notes = dm_notes
+    end
+    @location.save
+    redirect_to location_path(@location)
   end
 
   def destroy
@@ -68,7 +76,7 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params.require(:location).permit(:name, :variety, :description, :environment_id, :visible, :universe)
+    params.require(:location).permit(:name, :variety, :description, :environment_id, :visible, :universe, :public_notes, :dm_notes)
   end
 
   def grab_root_location(id)

@@ -1,5 +1,8 @@
 class SessionController < ApplicationController
   def new
+    unless @current_user.nil?
+      redirect_to user_path(@current_user)
+    end
   end
 
   def create

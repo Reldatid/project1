@@ -23,16 +23,32 @@ body{
   border: 0px;
   padding: 0px;
   margin: 0px;
+  font-family: helvetica, sans-serif;
+  font-size: 1em;
+}
+
+.application-grid{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 25px auto;
+}
+.header-grid{
+  grid-column: 1;
+  grid-row: 1;
+}
+.main-grid{
+  grid-column: 1;
+  grid-row: 2;
 }
 
 header{
   background-color: grey;
   padding: 5px;
-  position: fixed;
   top: 0px;
   left: 0px;
-  width: 100vw;
-  height: 25px;
+  width: 100%;
+  height: 100%;
 }
 
 header nav{
@@ -42,9 +58,13 @@ header nav{
 
 main{
   display: inline-block;
-  padding-top: 25px;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+}
+
+textarea{
+  font-family: helvetica, sans-serif;
+  font-size: 1em;
 }
 
 .grid-container{
@@ -54,69 +74,141 @@ main{
   grid-template-rows: 1fr;
 }
 
+div{
+}
+
 .tree-nav{
-  padding: 5px;
+  white-space: nowrap;
+  overflow: scroll;
+  padding: 10px;
   grid-column: 1;
   grid-row: 1;
   border: 1px solid black;
 }
 
+.edit_location{
+  height: 100%;
+}
+
 .data-grid{
+  height: 100%;
   display: grid;
+  grid-template-columns: 4fr 2fr 4fr 2fr;
+  grid-template-rows: 1fr 5fr 1fr 5fr;
+}
+.data-grid.display{
   grid-column: 2;
   grid-row: 1;
-  grid-template-columns: 4fr 2fr 4fr 2fr;
-  grid-template-rows: 1fr 1fr;
 }
 .data-grid div{
-  /* border: 1px solid black; */
+  border: 1px solid black;
+  padding-top: 5px;
   padding-left: 10px;
+}
+.data-grid textarea{
+  width: 100%;
+  height: 100%;
+}
+
+h3{
+  margin: 0px;
+}
+
+.general-header{
+  position: relative;
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  text-align: center;
+}
+.general-header h1{
+  margin: 0px;
+}
+.data-grid a{
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+  padding: 3px;
+  position: absolute;
+}
+.edit-link{
+  left: 0px;
+  top: 0px;
+}
+.add{
+  left: 0px;
+  bottom: 0px;
+}
+.delete-link{
+  right: 0px;
+  bottom: 0px;
+}
+
+.save-changes{
+  background-color: green;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding: 3px;
+  width: 70px;
+  height: 24px;
 }
 
 .general-info{
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 2;
   position: relative;
 }
 .description{
   white-space: pre-wrap;
 }
-.edit-link{
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
 
-  text-decoration: none;
-  color: initial;
-  padding: 3px;
-  position: absolute;
+.npcs{
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+}
+.npcs h4{
+  text-decoration: underline;
+  margin-top: 10px;
+}
+.npc-link{
   top: 0px;
   right: 0px;
 }
 
-.npcs{
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.npcs h4{
-  text-decoration: underline;
-  margin-top: 35px;
-}
-
-.public-notes{
-  grid-column: 1 / span 2;
-  grid-row: 2;
-}
-
-.dm-notes{
-  grid-column: 3 / span 2;
-  grid-row: 2;
-}
-
 .images{
   grid-column: 3 / span 2;
-  grid-row: 1;
+  grid-row: 2;
+}
+
+.public-header{
+  grid-column: 1 / span 2;
+  grid-row: 3 ;
+}
+.public-notes{
+  grid-column: 1 / span 2;
+  grid-row: 4 ;
+}
+
+.text-block{
+  white-space: pre-wrap;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.dm-header{
+  grid-column: 3 / span 2;
+  grid-row: 3;
+}
+.dm-notes{
+  grid-column: 3 / span 2;
+  grid-row: 4;
+}
+
+.notes-field{
+  height: 100%;
 }
 
 h1.user{

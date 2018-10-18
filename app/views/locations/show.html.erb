@@ -3,34 +3,39 @@
     <strong>Tree Nav</strong>
     <%= render(partial: 'tree') %>
   </div>
-  <div class="data-grid">
-    <div class="general-info">
+  <div class="data-grid display">
+    <div class="general-header">
       <h1><%= @location.name %></h1>
       <nav>
-      <%= link_to 'Add location', new_location_path(:universe => @location.universe, :branch => @location.branch) %> ||
-      <%= link_to 'Delete this location', location_path(@location), method: 'delete' %></nav>
-      <p class="description"><%= @location.description %></p>
-      <%= link_to "Edit page", edit_location_path(@location), :class => "edit-link" %>
+        <%= link_to 'Add location', new_location_path(:universe => @location.universe, :branch => @location.branch), :class => "add" %>
+        <%= link_to 'Delete', location_path(@location), method: 'delete', :class => "delete-link" %>
+        <%= link_to "Edit page", edit_location_path(@location), :class => "edit-link" %>
+      </nav>
     </div>
+    <div class="general-info">
+      <p class="text-block description"><%= @location.description %></p>
+    </div>
+
     <div class='npcs'>
-      <h4>NPCs:</h4>
+      <h4>NPCs:</h4>  <%= link_to "Add", new_user_path(:location => @location), :class => "npc-link" %>
+    </div>
+
+    <div class="public-header">
+      <h3>Notes:</h3>
     </div>
     <div class="public-notes">
-      <ul>
-      <% @location.notes.each do |note| %>
-        <% unless note.visible %>
-          <% if note.location.user.id == @current_user.id %>
-            <li><em><%= note.data %></em></li>
-          <% end %>
-        <% else %>
-          <li><%= note.data %></li>
-        <% end %>
-      <% end %>
-      </ul>
+      <p class="text-block"><%= @location.public_notes %></p>
     </div>
+
     <% if @current_user.id == @location.user_id %>
-      <div class='dm-notes'></div>
+    <div class="dm-header">
+      <h3>Seekrit Notes:</h3>
+    </div>
+    <div class='dm-notes'>
+      <p class="text-block"><%= @location.dm_notes %></p>
+    </div>
     <% end %>
+
     <div class='images'></div>
   </div>
 </div>

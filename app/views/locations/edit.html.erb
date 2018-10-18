@@ -1,21 +1,39 @@
-<%= form_for @location do |f| %>
-  <div class="data-grid">
-    <div class="general-info">
+<div class="grid-container">
+  <div class="tree-nav">
+    <strong>Tree Nav</strong>
+    <%= render(partial: 'tree') %>
+  </div>
+
+  <%= form_for @location do |f| %>
+  <div class="data-grid display">
+
+    <div class="general-header">
       <h1><%= @location.name %></h1>
-      <nav>
-        Add location ||
-        Delete this location
-      </nav>
+      <%= f.submit "Save", :class => "save-changes" %>
     </div>
+    <div class="general-info">
+      <%= f.text_area :description %>
+    </div>
+
     <div class='npcs'>
       <h4>NPCs:</h4>
     </div>
-    <div class="public-notes">
 
+    <div class="public-header">
+      <h3>Notes:</h3>
     </div>
+    <div class="public-notes"><%= f.text_area :public_notes, :class => "notes-field"%>
+    </div>
+
     <% if @current_user.id == @location.user_id %>
-      <div class='dm-notes'></div>
+    <div class="dm-header">
+      <h3>Seekrit Notes:</h3>
+    </div>
+    <div class='dm-notes'><%= f.text_area :dm_notes, :class => "notes-field"%>
+    </div>
     <% end %>
+
     <div class='images'></div>
   </div>
-<% end %>
+  <% end %>
+</div>

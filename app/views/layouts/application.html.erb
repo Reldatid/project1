@@ -11,20 +11,24 @@
   </head>
 
   <body>
-    <header>
-      <span>Universe Tracker</span>
-      <nav>
-        <% if @current_user.present? %>
-          <%= link_to @current_user.name, user_path(@current_user) %> ||
-          <%= link_to 'Logout', login_path, method: 'delete' %>
-        <% else %>
-          <%= link_to 'Login', login_path %> ||
-          <%= link_to 'Sign Up', new_user_path %>
-        <% end %>
-      </nav>
-    </header>
-    <main>
-      <%= yield %>
-    </main>
+    <div class="application-grid">
+      <div class="header-grid">
+      <header>
+        <span>Universe Tracker</span>
+        <nav>
+          <% if @current_user.present? %>
+            <%= link_to @current_user.name, user_path(@current_user) %> ||
+            <%= link_to 'Logout', login_path, method: 'delete' %>
+          <% else %>
+            <%= link_to 'Login', login_path %> ||
+            <%= link_to 'Sign Up', new_user_path %>
+          <% end %>
+        </nav>
+      </header>
+      </div>
+      <div class="main-grid">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
