@@ -46,21 +46,28 @@ class LocationsController < ApplicationController
 
   def update
     @location = Location.find params[:id]
+    unless params[:location][:environment_id].nil?
+      puts '='*4
+      "hello"
+      environment = Location.find params[:location][:environment_id]
+      branch_arr = environment.branch.split(',')
+      branch_arr.each do |place|
+        if place == @location.name
+          puts '='*4
+          puts "goodbye"
+          flash[:error] = "Don't choose a child landmark as a parent location!"
+          redirect_to edit_location_path(@location) and return
+        end
+      end
+    end
     dm_notes = @location.dm_notes
     @location.update location_params
 
-    environment = Location.find(@location.environment_id)
-    branch_arr = environment.branch.split(',')
-    branch_arr.each do |place|
-      if place == @location.name
-        flash[:error] = "Don't choose a child landmark as a parent location!"
-        redirect_to edit_location_path(@location) and return
-      end
-    end
     if @current_user.id != @location.user_id
       @location.dm_notes = dm_notes
     end
     @location.save
+    reconfigure_branches(Location.where(:name => @location.universe).first, [@location.universe])
     redirect_to location_path(@location)
   end
 
@@ -88,6 +95,21 @@ class LocationsController < ApplicationController
 
   def location_params
     params.require(:location).permit(:name, :variety, :description, :environment_id, :visible, :universe, :public_notes, :dm_notes)
+  end
+
+  def reconfigure_branches(location, branch)
+    location.branch = branch.join(',')
+    puts "="*100
+    puts location.name
+    puts branch.join(',')
+    puts location.branch
+    location.landmarks.each do |landmark|
+      reconfigure_branches(landmark, branch << landmark.name)
+      branch.pop
+      puts landmark
+      puts "+"*100
+    end
+    location.save
   end
 
   def grab_root_location(id)

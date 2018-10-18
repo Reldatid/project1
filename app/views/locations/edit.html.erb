@@ -2,7 +2,9 @@
 <div class="grid-container">
   <div class="tree-nav">
     <strong>Tree Nav</strong><br>
-    <%= f.collection_select :environment_id, Location.where(:universe => @location.universe), :id, :name, {:selected => @location.environment_id}%> <br>
+    <% unless @location.universe == @location.name %>
+      <%= f.collection_select :environment_id, Location.where(:universe => @location.universe), :id, :name, {:selected => @location.environment_id}%>
+    <% end %> <br>
     <% unless flash[:error].nil? %>
       <%= flash[:error] %>
     <% end %>

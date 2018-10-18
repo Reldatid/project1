@@ -23,7 +23,7 @@ l3 = Location.create name: 'The rubber duck', variety: 'pub', universe: 'Testopi
 l4 = Location.create name: 'Test-city', variety: 'city', universe: 'Testopia', branch: 'Testopia,Test-city'
 l5 = Location.create name: 'The test and tester', variety: 'tavern', universe: 'Testopia', branch: 'Testopia,Test-city,The test and tester'
 l6 = Location.create name: 'Testoleum', variety: 'graveyard', universe: 'Testopia', branch: 'Testopia,Test-city,Testoleum'
-l7 = Location.create name: 'Testopolis', variety: 'city', universe: 'Testopia', branch: 'Testopia-Testopolis'
+l7 = Location.create name: 'Testopolis', variety: 'city', universe: 'Testopia', branch: 'Testopia,Testopolis'
 
 puts "Created #{Location.all.length} Locations."
 
