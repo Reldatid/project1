@@ -19,7 +19,7 @@
       <h4>Landmarks:</h4><%= link_to 'New', new_location_path(:location => @location), :class => "button" %>
       <ul>
         <% @location.landmarks.each do |landmark| %>
-          <li><%= link_to landmark.name, location_path(@landmark) %></li>
+          <li><%= link_to landmark.name, location_path(landmark) %></li>
         <% end %>
       </ul>
     </div>
