@@ -1,0 +1,7 @@
+<%= form_for @npc do |f| %>
+  <%= f.text_field :name %> name <br>
+  <%= f.text_field :title %> title <br>
+  <%= f.text_field :description %> description <br>
+  <%= f.collection_select :location_id, Location.where(:universe => @location.universe), :id, :name, {:selected => @location.id}%> <br>
+  <%= f.submit %>
+<% end %>

@@ -28,7 +28,7 @@
     <div class='npc-display'>
       <% unless @npc.nil? %>
         <strong><%= @npc.name %>: <%= @npc.title %></strong>
-          <%= link_to "Edit", edit_npc_path(@npc), :class => " npc-edit-link" %><br>
+          <%= link_to "Edit", edit_npc_path(@npc, :location => @location), :class => " npc-edit-link" %><br>
         <%= @npc.description %>
       <% end %>
     </div>
